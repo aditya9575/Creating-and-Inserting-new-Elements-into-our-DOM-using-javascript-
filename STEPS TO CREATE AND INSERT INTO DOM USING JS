@@ -1,0 +1,104 @@
+STEP HIERARCHY FOLLOWED :=>
+
+1ST) WE CREATE AN ELEMENT 
+2ND) THEN WE CREATE A TEXT NODE / TEXT WE WANT TO BE THERE IN THAT ELEMENT 
+3RD) THEN WE MAKE THIS TEXT WE CREATED A PART OF THE ABOVE ELEMENT WE CREATED IN THE 1ST STEP
+
+----> TILL HERE WE HAVE CREATED AN ELEMENT BUT TILL NOW ITS NOT A PART OF OUR DOCUMENT SO NOW TO MAKE IT A PART OF OUR DOCUMENT WE NEED TO DECIDE THE PLACE WHERE WE WANT TO INSERT IT ---->
+(EXAMPLE WE WANT TO INSERT THIS ELEMENT BEFORE THE SECOND DIV SO WE WILL START BY SELECTING THE SECOND -> DIV I.E--->)
+
+4TH) THEN WE START BY SELECTING THE ELEMENT INSIDE OUR DOCUMENT BEFORE WHICH WE WANT TO INSERT OUR ELEMENT USING THE --->
+[   insertBefore(element that you want to insert , element before which you want the insertion to happen )   ]
+
+                                                             &
+
+If we wish to insert this element after the selected element we need to use---> appendChild( text / element that you want to append) method                                                             
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+create github post for->
+
+Question Statement:
+
+1. Inside the first Div, after the main heading add a sub-heading (h3 tag) "Buy high quality organic fruits online".
+
+2. Make the sub-heading text italic.
+
+2. Inside the second Div, before the unordered list add a paragraph tag showing "Total fruits: 4".
+
+3. On this paragraph tag set an id of "fruits-total".
+
+
+html code -> <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="margin: 0">
+    <div id="header" style="padding: 1rem 0; background-color: lightblue">
+      <h1 id="main-heading" style="margin: 0">Fruit Shop</h1>
+    </div>
+    <div>
+      <h2 id="basket-heading">Fruits In Basket</h2>
+      <ul class="fruits">
+        <li class="fruit">Banana</li>
+        <li class="fruit">Apple</li>
+        <li class="fruit">Orange</li>
+        <li class="fruit">Kiwi</li>
+      </ul>
+    </div>
+    <div id="thanks"></div>
+  </body>
+  <script src="index.js"></script>
+</html>
+
+solution--------------------------------------------------------------------------->
+// Write your code below:
+
+//first we start by creating our element by using createElement("elementname")
+//method 
+const subHeading = document.createElement("h3");
+
+//now we add/provide a text by using createTextNode("value we want for our new element ") 
+//method to this element we created above 
+const subHeadingText = document.createTextNode("Buy high quality organic fruits online")
+
+//now we assign this newly created element its newly created value using
+//the appendChild method
+subHeading.appendChild(subHeadingText);
+
+//now we grab our main heading using getElementById method as we want to get 
+//hold of the element we want the insertion to happen before or after 
+const mainH = document.getElementById("main-heading");
+
+//now we use .appendChild method to perform the insertion process after it
+mainH.appendChild(subHeading)
+
+//now we make the subheading text italic 
+subHeading.style.fontStyle = "italic";
+
+
+// now inside the second div we adda para before the unordered list using
+//the insertBefore(element we want to insert , the element before which 
+//we want the insertion to happen ) method to insert the element before 
+
+// we start by selecting the list
+// We use querySelector to select the first element with the class "fruits"
+const list = document.querySelector(".fruits");
+
+// We create a paragraph tag for insertion
+const para = document.createElement("p");
+
+// Now we assign the text to this para using .createTextNode method
+const paraText = document.createTextNode("Total fruits: 4");
+
+// Now we assign our para this text using .appendChild method
+para.appendChild(paraText);
+
+// Now we perform the insertion
+list.parentNode.insertBefore(para, list);
+
+//now we assign id to this newly created para element
+para.id="fruits-total"
